@@ -1464,10 +1464,17 @@ cursor:pointer;transition:all .3s;
 
 </div>
 
-<!-- PUZZLE -->
 <div class="puzzle-grid">
-<div class="card" id="puzzleCard">
-<div style="font-size:14px;color:var(--accent-soft);font-weight:700;margin-bottom:12px;text-transform:uppercase" id="currentCategoryDisplay">SPORTS</div>
+  <div class="card" id="puzzleCard">
+    <div style="font-size:14px;color:var(--accent-soft);font-weight:700;margin-bottom:12px;text-transform:uppercase" id="currentCategoryDisplay">SPORTS</div>
+
+    <div id="puzzleWord" style="font-size:24px; font-weight:bold; margin-bottom:10px;">_ _ _ _ _</div>
+
+    <div id="hintDisplay" style="font-size:16px; color:orange; margin-bottom:12px;">Hint: ???</div>
+
+    <button onclick="showHint()">Show Hint</button>
+  </div>
+</div>
 
 <!-- Difficulty Display (auto-assigned based on progress) -->
 <div style="text-align:center;margin-bottom:16px;padding:8px;background:rgba(59,130,246,.1);border-radius:8px">
