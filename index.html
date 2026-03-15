@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Word Game Unblocked</title>
-  <h1>Welcome!</h1>
+  <h1>Welcome to Word Game Unblocked!!</h1>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -1477,6 +1477,33 @@ cursor:pointer;transition:all .3s;
 <div class="clue" id="clue"></div>
 <div class="constraints" id="constraints"></div>
 <div class="counter" id="counter">Guesses left: 5</div>
+
+<div id="loseMessage" class="lose-message">You Lose!</div>
+
+let guesses = 5;
+
+function useGuess() {
+
+  if (guesses <= 0) return; // prevents going negative
+
+  guesses--;
+
+  document.getElementById("counter").textContent = "Guesses left: " + guesses;
+
+  if (guesses === 0) {
+    showLoseMessage();
+  }
+}
+
+function showLoseMessage() {
+  const msg = document.getElementById("loseMessage");
+
+  msg.style.display = "block";
+
+  setTimeout(() => {
+    msg.style.display = "none";
+  }, 3000); // disappears after 3 seconds
+}
 
 <!-- Streak Power Buttons -->
 <div class="streak-powers-container">
