@@ -1480,25 +1480,38 @@ cursor:pointer;transition:all .3s;
 
 <div id="loseMessage" class="lose-message">You Lose!</div>
 
+<style>
+  .lose-message {
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+<button onclick="useGuess()">Make a Guess</button>
+
 <script>
-let "counter" = 5;
+let guesses = 5; // correct: no quotes
 
 function useGuess() {
+  if (guesses <= 0) return; // prevents negative guesses
 
-  if ("counter" <= 0) return; // prevents going negative
-
-  "counter"--;
+  guesses--; // decrease the counter
 
   document.getElementById("counter").textContent = "Guesses left: " + guesses;
 
-  if ("counter" === 0) {
+  if (guesses === 0) {
     showLoseMessage();
   }
 }
 
 function showLoseMessage() {
   const msg = document.getElementById("loseMessage");
-
   msg.style.display = "block";
 
   setTimeout(() => {
@@ -1506,6 +1519,8 @@ function showLoseMessage() {
   }, 3000); // disappears after 3 seconds
 }
 </script>
+
+
 
 <!-- Streak Power Buttons -->
 <div class="streak-powers-container">
