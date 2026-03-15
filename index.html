@@ -1547,7 +1547,7 @@ function showLoseMessage() {
 
 <div class="card">
 <input id="guess" placeholder="Type the word that fits"/>
-<button class="submit" onclick="submitGuess()">Submit</button>
+<button class="submit" onclick="useGuess()">Submit</button>
 <div class="message" id="message"></div>
 
 <!-- Guess History -->
@@ -1563,7 +1563,7 @@ function showLoseMessage() {
 
 <div class="start" id="victory" style="display:none">
 <h1 style="font-size:72px;color:var(--success);text-shadow:0 0 40px rgba(52,211,153,.6)">🎉</h1>
-<h2 style="font-size:48px;margin:0">YOU BEAT RULEOUT!</h2>
+<h2 style="font-size:48px;margin:0">You beat Word Game Unblocked! Congrats!</h2>
 <p style="font-size:24px;color:var(--accent-soft);margin:20px 0">Final Score: <span id="finalScore" style="font-weight:900">0</span> points</p>
 <button style="background:linear-gradient(135deg,var(--success),#10b981);color:white" onclick="playAgain()">▶ PLAY AGAIN</button>
 </div>
@@ -2764,7 +2764,7 @@ updateTierDisplay();
 updateStreakPowers();
 }
 
-function submitGuess(){
+function useGuess(){
 sounds.click();
 const w = guess.value.toLowerCase().trim();
 if(!w) return;
@@ -3351,7 +3351,7 @@ if (guess) {
 guess.addEventListener('keypress', function(e) {
 if (e.key === 'Enter') {
 e.preventDefault();
-submitGuess();
+useGuess();
 }
 });
 }
