@@ -9,57 +9,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Account System</title>
-  <style>
-    body { font-family: sans-serif; max-width: 400px; margin: 50px auto; }
-    input, button { display: block; margin: 10px 0; padding: 8px; width: 100%; }
-  </style>
-</head>
-<body>
-  <h1>Welcome!</h1>
-
-  <h2>Create Account</h2>
-  <input type="text" id="newUsername" placeholder="Enter username">
-  <button id="createAccount">Create Account</button>
-
-  <h2>Sign In</h2>
-  <input type="text" id="signInUsername" placeholder="Enter username">
-  <button id="signIn">Sign In</button>
-
-  <script>
-    // Create account
-    document.getElementById("createAccount").addEventListener("click", () => {
-      const username = document.getElementById("newUsername").value.trim();
-      if (!username) return alert("Enter a username");
-
-      // Check if username exists
-      if (localStorage.getItem("user_" + username)) {
-        return alert("Username already exists");
-      }
-
-      // Save username in localStorage
-      localStorage.setItem("user_" + username, JSON.stringify({ username }));
-      alert("Account created! You can now sign in.");
-      document.getElementById("newUsername").value = "";
-    });
-
-    // Sign in
-    document.getElementById("signIn").addEventListener("click", () => {
-      const username = document.getElementById("signInUsername").value.trim();
-      if (!username) return alert("Enter a username");
-
-      const user = localStorage.getItem("user_" + username);
-      if (!user) {
-        return alert("User not found. Please create an account first.");
-      }
-
-      alert("Signed in as " + username);
-      document.getElementById("signInUsername").value = "";
-    });
-  </script>
-</body>
-</html>         
-    
   
 <style>
 :root{
@@ -1470,17 +1419,16 @@ cursor:pointer;transition:all .3s;
 <div class="start" id="start">
 <h1>Word Game Unblocked</h1>
 <p>Decode the clues. Follow the rules. Guess the word. Build your streak to unlock powerful abilities!</p>
-<button onclick="location.href="game">Play for free!</button>
+<button onclick="location.href='#game'">Play for free!</button>
 
 <section class="game" id="game">
 </section>
-</button>
-</div>"game"
 
 <div class="game" id="game">
-<button class="signout-btn" style="left:140px" onclick="openAchievements()">🏆 Achievements</button>
-<button class="help-btn" id="helpBtn" onclick="getHint()" title="Get an extra clue">?</button>
-<button class="shop-btn" onclick="openShop()">💰 Shop</button>
+  <button class="signout-btn" style="left:140px" onclick="openAchievements()">🏆 Achievements</button>
+  <button class="help-btn" id="helpBtn" onclick="getHint()" title="Get an extra clue">?</button>
+  <button class="shop-btn" onclick="openShop()">💰 Shop</button>
+</div>
 
 <div class="container">
 
