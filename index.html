@@ -1481,6 +1481,40 @@ cursor:pointer;transition:all .3s;
 <span style="font-size:14px;font-weight:700;color:var(--accent-soft)" id="currentDifficultyDisplay">EASY MODE</span>
 </div>
 
+<script>  
+const puzzles = [
+  { word: "SOCCER", category: "SPORTS", hint: "Played with a round ball on a field." },
+  { word: "BASKETBALL", category: "SPORTS", hint: "You shoot through a hoop." },
+  { word: "TENNIS", category: "SPORTS", hint: "Played with racquets and a yellow ball." }
+];
+
+let currentPuzzleIndex = 0;
+
+function loadPuzzle(index) {
+  const puzzle = puzzles[index];
+  document.getElementById("currentCategoryDisplay").textContent = puzzle.category;
+  
+  // Show blanks for each letter
+  document.getElementById("puzzleWord").textContent = "_ ".repeat(puzzle.word.length).trim();
+
+  // Reset hint
+  document.getElementById("hintDisplay").textContent = "Hint: ???";
+
+  // Reset guesses (if you have a guesses system)
+  guesses = 5;
+  document.getElementById("counter").textContent = "Guesses left: " + guesses;
+}
+
+// Show hint when button clicked
+function showHint() {
+  const puzzle = puzzles[currentPuzzleIndex];
+  document.getElementById("hintDisplay").textContent = "Hint: " + puzzle.hint;
+}
+
+// Load the first puzzle on page load
+loadPuzzle(currentPuzzleIndex);
+</script>
+
 <div class="clue" id="clue"></div>
 <div class="constraints" id="constraints"></div>
 <div class="counter" id="counter">Guesses left: 5</div>
