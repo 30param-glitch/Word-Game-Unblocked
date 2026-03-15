@@ -1462,8 +1462,6 @@ cursor:pointer;transition:all .3s;
 <!-- Stats Button Below -->
 <button class="stats-btn" onclick="openStats()">📊 View Detailed Stats</button>
 
-</div>
-
 <div class="puzzle-grid">
   <div class="card" id="puzzleCard">
     <div style="font-size:14px;color:var(--accent-soft);font-weight:700;margin-bottom:12px;text-transform:uppercase" id="currentCategoryDisplay">SPORTS</div>
@@ -1473,15 +1471,23 @@ cursor:pointer;transition:all .3s;
     <div id="hintDisplay" style="font-size:16px; color:orange; margin-bottom:12px;">Hint: ???</div>
 
     <button onclick="showHint()">Show Hint</button>
+
+    <div style="margin-top:12px;">
+      <input type="text" id="playerGuess" placeholder="Type your guess here" />
+      <button onclick="checkGuess()">Submit</button>
+    </div>
   </div>
 </div>
+
+<div class="counter" id="counter">Guesses left: 5</div>
+<div id="loseMessage" class="lose-message">You Lose!</div>
 
 <!-- Difficulty Display (auto-assigned based on progress) -->
 <div style="text-align:center;margin-bottom:16px;padding:8px;background:rgba(59,130,246,.1);border-radius:8px">
 <span style="font-size:14px;font-weight:700;color:var(--accent-soft)" id="currentDifficultyDisplay">EASY MODE</span>
 </div>
 
-<script>  
+<script>
 const puzzles = [
   { word: "SOCCER", category: "SPORTS", hint: "Played with a round ball on a field." },
   { word: "BASKETBALL", category: "SPORTS", hint: "You shoot through a hoop." },
@@ -1489,51 +1495,68 @@ const puzzles = [
 ];
 
 let currentPuzzleIndex = 0;
+let guesses = 5;
 
+// Load the current puzzle
 function loadPuzzle(index) {
   const puzzle = puzzles[index];
   document.getElementById("currentCategoryDisplay").textContent = puzzle.category;
-  
-  // Show blanks for each letter
   document.getElementById("puzzleWord").textContent = "_ ".repeat(puzzle.word.length).trim();
-
-  // Reset hint
   document.getElementById("hintDisplay").textContent = "Hint: ???";
-
-  // Reset guesses (if you have a guesses system)
+  document.getElementById("playerGuess").value = "";
   guesses = 5;
   document.getElementById("counter").textContent = "Guesses left: " + guesses;
 }
 
-// Show hint when button clicked
+// Show hint
 function showHint() {
   const puzzle = puzzles[currentPuzzleIndex];
   document.getElementById("hintDisplay").textContent = "Hint: " + puzzle.hint;
 }
 
-// Load the first puzzle on page load
+// Check player's guess
+function checkGuess() {
+  const puzzle = puzzles[currentPuzzleIndex];
+  const guess = document.getElementById("playerGuess").value.toUpperCase().trim();
+
+  if (!guess) return; // ignore empty guesses
+
+  if (guess === puzzle.word) {
+    alert("🎉 Correct!"); // could also show on screen
+    nextPuzzle();
+  } else {
+    guesses--;
+    if (guesses <= 0) {
+      guesses = 0;
+      showLoseMessage();
+    }
+    document.getElementById("counter").textContent = "Guesses left: " + guesses;
+  }
+
+  document.getElementById("playerGuess").value = "";
+}
+
+// Show "You Lose!" message
+function showLoseMessage() {
+  const msg = document.getElementById("loseMessage");
+  msg.style.display = "block";
+  setTimeout(() => {
+    msg.style.display = "none";
+    loadPuzzle(currentPuzzleIndex); // restart same puzzle
+  }, 3000);
+}
+
+// Go to next puzzle
+function nextPuzzle() {
+  currentPuzzleIndex++;
+  if (currentPuzzleIndex >= puzzles.length) currentPuzzleIndex = 0;
+  loadPuzzle(currentPuzzleIndex);
+}
+
+// Load first puzzle on page load
 loadPuzzle(currentPuzzleIndex);
 </script>
-
-<div class="clue" id="clue"></div>
-<div class="constraints" id="constraints"></div>
-<div class="counter" id="counter">Guesses left: 5</div>
-
-<div id="loseMessage" class="lose-message">You Lose!</div>
-
-<style>
-  .lose-message {
-    display: none;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    color: red;
-    font-weight: bold;
-  }
-</style>
-
+      
 <script>
 let guesses = 5; // correct: no quotes
 
