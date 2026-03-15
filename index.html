@@ -1481,17 +1481,17 @@ cursor:pointer;transition:all .3s;
 <div id="loseMessage" class="lose-message">You Lose!</div>
 
 <script>
-let guesses = 5;
+let "counter" = 5;
 
 function useGuess() {
 
-  if (guesses <= 0) return; // prevents going negative
+  if ("counter" <= 0) return; // prevents going negative
 
-  guesses--;
+  "counter"--;
 
   document.getElementById("counter").textContent = "Guesses left: " + guesses;
 
-  if (guesses === 0) {
+  if ("counter" === 0) {
     showLoseMessage();
   }
 }
