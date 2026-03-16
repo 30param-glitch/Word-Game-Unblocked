@@ -1443,7 +1443,6 @@ cursor:pointer;transition:all .3s;
 </div>
 </div>
 
-// Initialize points
 <script>
 let points = 0;
 
@@ -3300,46 +3299,6 @@ updateStreakPowers();
 
 update();
 saveProgress();
-}
-
-// FIREBASE FIRESTORE SAVE/LOAD FUNCTIONS
-async function loadProgressFromFirebase() {
-if (!currentUser || !db) return false;
-
-try {
-const docRef = db.collection('users').doc(currentUser.uid);
-const snapshot = await docRef.get();
-if (snapshot.exists) {
-const progress = snapshot.data();
-
-categoryIndex = progress.categoryIndex || 0;
-puzzleIndex = progress.puzzleIndex || 0;
-guessesLeft = progress.guesses || 5;
-currentCategory = progress.category || "";
-totalPoints = progress.points || 0;
-streak = progress.streak || 0;
-hintUsed = progress.hintUsed || false;
-currentDifficulty = progress.difficulty || 'normal';
-
-if (progress.inventory) inventory = progress.inventory;
-if (progress.ownedCosmetics) ownedCosmetics = progress.ownedCosmetics;
-if (progress.activeCosmetic) {
-activeCosmetic = progress.activeCosmetic;
-applyCosmetic(activeCosmetic);
-}
-if (progress.dailyStreak !== undefined) dailyStreak = progress.dailyStreak;
-if (progress.lastDailyClaim) {
-localStorage.setItem('ruleout_daily', progress.lastDailyClaim);
-}
-if (progress.stats) Object.assign(playerStats, progress.stats);
-
-if (progress.unlockedAchievements) {
-unlockedAchievements = new Set(progress.unlockedAchievements);
-}
-
-if(hintUsed) {
-const helpBtn = document.getElementById('helpBtn');
-if(helpBtn) helpBtn.disabled = true;
 }
 
 // Also save to localStorage as backup
