@@ -56,46 +56,6 @@ button:active:not(:disabled){
 transform:translateY(0);
 }
 
-<script>
-let currentPuzzleIndex = 0;
-const puzzles = [
-  { word: "SOCCER", category: "SPORTS", hint: "Played with a round ball on a field." },
-  { word: "BASKETBALL", category: "SPORTS", hint: "Shoot through a hoop." }
-];
-
-let points = 0;
-let guesses = 5;
-
-function checkGuess() {
-  const puzzle = puzzles[currentPuzzleIndex];
-  const guess = document.getElementById("playerGuess").value.toUpperCase().trim();
-
-  if (!guess) return;
-
-  if (guess === puzzle.word) {
-    points += 10;
-    document.getElementById("totalPoints").textContent = points;
-    alert("🎉 Correct! +10 points");
-    nextPuzzle();
-  } else {
-    guesses--;
-    if (guesses <= 0) {
-      guesses = 0;
-      showLoseMessage();
-    }
-    document.getElementById("counter").textContent = "Guesses left: " + guesses;
-  }
-
-  document.getElementById("playerGuess").value = "";
-}
-
-// stub functions so it doesn’t break
-function nextPuzzle() { console.log("Next puzzle"); }
-function showLoseMessage() { console.log("You Lose!"); }
-</script>
-
-
-
 /* START */
 .start{
 position:fixed;
@@ -3486,6 +3446,45 @@ streak: dailyStreak
 
 document.getElementById('dailyRewardPopup').classList.remove('active');
 }
+</script>
+
+
+<script>
+let currentPuzzleIndex = 0;
+const puzzles = [
+  { word: "SOCCER", category: "SPORTS", hint: "Played with a round ball on a field." },
+  { word: "BASKETBALL", category: "SPORTS", hint: "Shoot through a hoop." }
+];
+
+let points = 0;
+let guesses = 5;
+
+function checkGuess() {
+  const puzzle = puzzles[currentPuzzleIndex];
+  const guess = document.getElementById("playerGuess").value.toUpperCase().trim();
+
+  if (!guess) return;
+
+  if (guess === puzzle.word) {
+    points += 10;
+    document.getElementById("totalPoints").textContent = points;
+    alert("🎉 Correct! +10 points");
+    nextPuzzle();
+  } else {
+    guesses--;
+    if (guesses <= 0) {
+      guesses = 0;
+      showLoseMessage();
+    }
+    document.getElementById("counter").textContent = "Guesses left: " + guesses;
+  }
+
+  document.getElementById("playerGuess").value = "";
+}
+
+// stub functions so it doesn’t break
+function nextPuzzle() { console.log("Next puzzle"); }
+function showLoseMessage() { console.log("You Lose!"); }
 </script>
 
 </body>
