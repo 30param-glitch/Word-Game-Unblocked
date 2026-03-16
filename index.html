@@ -57,7 +57,7 @@ transform:translateY(0);
 }
 
 <script>
-let points = 0;
+let totalPoints = 0;
 
 function checkGuess() {
   const puzzle = puzzles[currentPuzzleIndex];
@@ -67,7 +67,7 @@ function checkGuess() {
 
   if (guess === puzzle.word) {
     // Correct answer
-    points += 10; // Add 10 points (you can change this value)
+    totalPoints += 10; 
     document.getElementById("totalPoints").textContent = points;
 
     alert("🎉 Correct! +10 points");
