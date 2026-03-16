@@ -56,6 +56,13 @@ button:active:not(:disabled){
 transform:translateY(0);
 }
 
+let currentPuzzleIndex = 0;
+
+const puzzles = [
+  { word: "SOCCER", category: "SPORTS", hint: "Played with a round ball on a field." },
+  { word: "BASKETBALL", category: "SPORTS", hint: "Shoot through a hoop." }
+];
+
 <script>
 let points = 0;
 
